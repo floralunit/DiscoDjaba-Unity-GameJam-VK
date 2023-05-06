@@ -1,33 +1,37 @@
+using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class FrogMovement : MonoBehaviour
 {
     private bool isMoving;
+
     private Vector3 origPos, targetPos;
     private float timeToMove = 0.2f;
 
     private void Start()
     {
-        transform.position = new Vector2(4, 4);
+        transform.position = new Vector2(GridManager.Instance.transform.position.x + GridManager.Instance._width / 2, GridManager.Instance.transform.position.y + GridManager.Instance._height / 2);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W) && !isMoving && transform.position.y < 8) { 
+        if (Input.GetKey(KeyCode.W) && !isMoving )
+        {
             StartCoroutine(MoveFrog(Vector3.up));
         }
-        if (Input.GetKey(KeyCode.A) && !isMoving && transform.position.x > 0)
+        if (Input.GetKey(KeyCode.A) && !isMoving )
         {
             StartCoroutine(MoveFrog(Vector3.left));
         }
-        if (Input.GetKey(KeyCode.S) && !isMoving && transform.position.y > 0)
+        if (Input.GetKey(KeyCode.S) && !isMoving )
         {
             StartCoroutine(MoveFrog(Vector3.down));
         }
-        if (Input.GetKey(KeyCode.D) && !isMoving && transform.position.x < 8)
+        if (Input.GetKey(KeyCode.D) && !isMoving )
         {
             StartCoroutine(MoveFrog(Vector3.right));
         }
@@ -54,4 +58,14 @@ public class FrogMovement : MonoBehaviour
         Debug.Log($"Легущка в координате {targetPos.x} {targetPos.y} на цвете {tile._color}");
         isMoving = false;
     }
+
+    public bool CheckIfCanUseCard (Card card)
+    {
+        var wantLocation = transform.position + card.CardDirection;
+        var tile = GridManager.Instance.GetTileAtPosition(wantLocation);
+
+        if (card.CardColors.Contains(tile._color)) return true;
+        return false;
+    }
+
 }
