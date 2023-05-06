@@ -22,7 +22,7 @@ namespace Assets.Scripts.Model
             {
                 var player = new Player();
                 player.Name = $"Игрок { i + 1}";
-                player.Cards = Card.GetStartCards();
+                player.Cards = CardsManager.GetStartCards();
                 if (numPlayers != 2 || i == 0)
                 {
                     player.WinLocation = ColorDirectionHelp.playerLocations[i];

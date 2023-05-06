@@ -64,7 +64,7 @@ public class FrogMovement : MonoBehaviour
         var wantLocation = transform.position + card.CardDirection;
         var tile = GridManager.Instance.GetTileAtPosition(wantLocation);
 
-        if (card.CardColors.Contains(tile._color)) return true;
+        if (card.CardColor!= tile._color) return true;
         return false;
     }
 

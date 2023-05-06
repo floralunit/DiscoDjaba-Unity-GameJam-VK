@@ -9,7 +9,7 @@ public class Tile : MonoBehaviour
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject _highlight;
 
-    public void Init(int num)
+    public void Init()
     {
         // Создаем экземпляр Tile с указанным цветом
         _renderer.color = ColorDirectionHelp.SetRandomColor();

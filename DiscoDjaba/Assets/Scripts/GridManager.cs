@@ -38,7 +38,7 @@ public class GridManager : MonoBehaviour
 
                 System.Random rnd = new System.Random();
                 int num = rnd.Next(1, 5);
-                spawnedTile.Init(num);
+                spawnedTile.Init();
 
                 _tiles[new Vector2(this.transform.position.x + x, this.transform.position.y + y)] = spawnedTile;
             }
