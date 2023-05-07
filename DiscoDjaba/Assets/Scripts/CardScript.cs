@@ -48,6 +48,10 @@ public class CardScript : MonoBehaviour
                 gm.avalibaleCardSlots[handIndex] = true;
                 Invoke("MoveToDiscardPile", 2f);
                 StartCoroutine(FrogMovement.Instance.MoveFrog(this.CardDirection));
+                gm.RoundNum++;
+                if (gm.CurrentPlayer == gm.Players[0]) gm.CurrentPlayer = gm.Players[1];
+                if (gm.CurrentPlayer == gm.Players[1]) gm.CurrentPlayer = gm.Players[0];
+                //gm.ChangeSlots();
             }
         }
     }

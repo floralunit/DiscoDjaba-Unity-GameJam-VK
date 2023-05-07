@@ -5,7 +5,11 @@ using UnityEngine;
 
 public class SlotScript : MonoBehaviour
 {
-
+    [SerializeField] string Name;
+    private void Awake()
+    {
+        Name = this.name;
+    }
     void Start()
     {
 
@@ -13,22 +17,22 @@ public class SlotScript : MonoBehaviour
 
         switch (this.name)
         {
-            case "Slot1Player1":
+            case "Slot1Player1" or "Slot1Player2":
                 {
 
                     break;
                 }
-            case "Slot2Player1":
+            case "Slot2Player1" or "Slot2Player2":
                 {
                     transform.position = transform.position + Vector3.right * 2;
                     break;
                 }
-            case "Slot3Player1":
+            case "Slot3Player1" or "Slot3Player2":
                 {
                     transform.position = transform.position + Vector3.right * 2 * 2;
                     break;
                 }
-            case "Slot4Player1":
+            case "Slot4Player1" or "Slot4Player2":
                 {
                     transform.position = transform.position + Vector3.right * 2 * 3;
                     break;

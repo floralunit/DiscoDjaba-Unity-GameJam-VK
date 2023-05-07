@@ -11,8 +11,8 @@ namespace Assets.Scripts.Model
     public class Player
     {
         public string Name { get; set; }
-        public List<Card> Cards { get; set; } 
-        public Vector2 WinLocation { get; set; }
+        public List<CardScript> Cards { get; set; } 
+        public Vector3 WinLocation { get; set; }
 
         public static List<Player> FillPlayers(int numPlayers)
         {
@@ -22,14 +22,14 @@ namespace Assets.Scripts.Model
             {
                 var player = new Player();
                 player.Name = $"Игрок { i + 1}";
-                player.Cards = CardsManager.GetStartCards();
+                //player.Cards = CardsManager.GetStartCards();
                 if (numPlayers != 2 || i == 0)
                 {
-                    player.WinLocation = ColorDirectionHelp.playerLocations[i];
+                    player.WinLocation = new Vector3( 0, GridManager.Instance._height - 1, 0 );
                 }
                 else if (i == 1)
                 {
-                    player.WinLocation = ColorDirectionHelp.playerLocations[i + 1];
+                    player.WinLocation = new Vector3(GridManager.Instance._width - 1, GridManager.Instance._height - 1, 0);
                 }
                 players.Add(player);
             }
