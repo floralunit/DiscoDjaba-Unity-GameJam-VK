@@ -10,11 +10,18 @@ using Random = UnityEngine.Random;
 public class GameManagerScript : MonoBehaviour
 {
     public List<CardScript> deck;
+    public List<CardScript> handDeck;
     public List<CardScript> discard = new List<CardScript>();
     public Transform[] cardSlots;
     public bool[] avalibaleCardSlots;
+    public static GameManagerScript Instance;
 
     [SerializeField] private CardScript _cradPref;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -56,12 +63,13 @@ public class GameManagerScript : MonoBehaviour
                 {
                     randCard.gameObject.SetActive(true);
                     randCard.handIndex = i;
-                    
+
                     randCard.transform.position = cardSlots[i].position;
                     randCard.hasBeenPlayed = false;
 
                     avalibaleCardSlots[i] = false;
                     deck.Remove(randCard);
+                    handDeck.Add(randCard);
                     return;
                 }
             }
@@ -77,6 +85,37 @@ public class GameManagerScript : MonoBehaviour
                 deck.Add(card);
             }
             discard.Clear();
+        }
+    }
+
+    public void DiscardCard()
+    {
+        CardScript randCard = handDeck[Random.Range(0, handDeck.Count)];
+        if (randCard.hasBeenPlayed == false)
+        {
+            ;
+            randCard.hasBeenPlayed = true;
+            this.avalibaleCardSlots[randCard.handIndex] = true;
+            this.discard.Add(randCard);
+            this.handDeck.Remove(randCard);
+            randCard.gameObject.SetActive(false);
+        }
+    }
+
+    void MoveToDiscardPile(CardScript card)
+    {
+
+        this.discard.Add(card);
+        this.handDeck.Remove(card);
+        card.gameObject.SetActive(false);
+    }
+
+
+    public void Update()
+    {
+        if (avalibaleCardSlots.Any())
+        {
+            DrawCard();
         }
     }
 }

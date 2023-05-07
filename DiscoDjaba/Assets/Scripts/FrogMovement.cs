@@ -7,9 +7,14 @@ using UnityEngine;
 public class FrogMovement : MonoBehaviour
 {
     private bool isMoving;
+    public static FrogMovement Instance;
 
     private Vector3 origPos, targetPos;
     private float timeToMove = 0.2f;
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -37,8 +42,9 @@ public class FrogMovement : MonoBehaviour
         }
     }
 
-    private IEnumerator MoveFrog(Vector3 direction)
+    public IEnumerator MoveFrog(Vector3 direction)
     {
+        Debug.Log("MoveFrog");
         isMoving= true;
 
         float elapseTime = 0;
@@ -59,12 +65,13 @@ public class FrogMovement : MonoBehaviour
         isMoving = false;
     }
 
-    public bool CheckIfCanUseCard (Card card)
+    public bool CheckIfCanUseCard (CardScript card)
     {
+        //Debug.Log("проверяем");
         var wantLocation = transform.position + card.CardDirection;
         var tile = GridManager.Instance.GetTileAtPosition(wantLocation);
 
-        if (card.CardColor!= tile._color) return true;
+        if (card.CardColor == tile._color) return true;
         return false;
     }
 
