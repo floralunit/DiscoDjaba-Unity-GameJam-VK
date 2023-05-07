@@ -13,7 +13,10 @@ public class GridManager : MonoBehaviour
 
     [SerializeField] private Transform _cam;
 
+    [SerializeField] public List<Material> colors;
+    
     private Dictionary<Vector2, Tile> _tiles;
+    
     private void Awake()
     {
         Instance = this;
@@ -35,9 +38,11 @@ public class GridManager : MonoBehaviour
             {
                 var spawnedTile = Instantiate(_tilePrefab, new Vector3(this.transform.position.x + x, this.transform.position.y + y), Quaternion.identity);
                 spawnedTile.name = $"Tile {x} {y}";
-
                 System.Random rnd = new System.Random();
-                int num = rnd.Next(1, 5);
+                int num = rnd.Next(0, colors.Count);
+                spawnedTile._color = colors[num].color;
+                    
+                
                 spawnedTile.Init();
 
                 _tiles[new Vector2(this.transform.position.x + x, this.transform.position.y + y)] = spawnedTile;

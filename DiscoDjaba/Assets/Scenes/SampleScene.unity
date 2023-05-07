@@ -317,10 +317,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c35c30e1b53acf479c4899ff5dd01c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deck:
-  - {fileID: 1540015853}
+  deck: []
   handDeck: []
   discard: []
+  colors:
+  - {fileID: 2100000, guid: d61cb128a6b9f414181559a5a7912537, type: 2}
+  - {fileID: 2100000, guid: 8fcdcfefede57437ea7bf0f8b3cfb22e, type: 2}
+  - {fileID: 2100000, guid: 4211cbed2ea8743c99645d7c65a98228, type: 2}
+  - {fileID: 2100000, guid: bdf6947efd42a4359a719aa185b073a1, type: 2}
   cardSlots:
   - {fileID: 1300174947}
   - {fileID: 1412082652}
@@ -430,7 +434,6 @@ GameObject:
   m_Component:
   - component: {fileID: 370738042}
   - component: {fileID: 370738041}
-  - component: {fileID: 370738044}
   - component: {fileID: 370738043}
   m_Layer: 0
   m_Name: Frog
@@ -480,7 +483,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 813c78c967121874a8cef12660f9fb06, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4a21c5ae4785648e19336f3f1a211883, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -500,25 +503,13 @@ Transform:
   m_GameObject: {fileID: 370738040}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.23986, y: 0.23986, z: 0.23986}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &370738043
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 370738040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4b996b9b15fe2546a66a82a645c6680, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &370738044
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -803,6 +794,11 @@ MonoBehaviour:
   _height: 7
   _tilePrefab: {fileID: 8446445722670980132, guid: 5bdf91ecd65f42c469beddbc40af860d, type: 3}
   _cam: {fileID: 519420032}
+  colors:
+  - {fileID: 2100000, guid: d61cb128a6b9f414181559a5a7912537, type: 2}
+  - {fileID: 2100000, guid: 8fcdcfefede57437ea7bf0f8b3cfb22e, type: 2}
+  - {fileID: 2100000, guid: 4211cbed2ea8743c99645d7c65a98228, type: 2}
+  - {fileID: 2100000, guid: bdf6947efd42a4359a719aa185b073a1, type: 2}
 --- !u!4 &1093751922
 Transform:
   m_ObjectHideFlags: 0
@@ -894,6 +890,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
@@ -1149,17 +1146,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7825321557477351106, guid: 436050520a3b1174e8c36a2abb4ed3e6, type: 3}
   m_PrefabInstance: {fileID: 3049685503691930471}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1540015853 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2315650055906101539, guid: 436050520a3b1174e8c36a2abb4ed3e6, type: 3}
-  m_PrefabInstance: {fileID: 3049685503691930471}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a068bb47107b31645973b4f8f4b27ef6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1612516708
 GameObject:
   m_ObjectHideFlags: 0

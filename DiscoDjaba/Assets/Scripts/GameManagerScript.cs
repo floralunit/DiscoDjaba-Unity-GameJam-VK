@@ -12,6 +12,9 @@ public class GameManagerScript : MonoBehaviour
     public List<CardScript> deck;
     public List<CardScript> handDeck;
     public List<CardScript> discard = new List<CardScript>();
+    [SerializeField] public List<Material> colors;
+    
+    
     public Transform[] cardSlots;
     public bool[] avalibaleCardSlots;
     public static GameManagerScript Instance;
@@ -25,31 +28,22 @@ public class GameManagerScript : MonoBehaviour
 
     private void Start()
     {
-        List<CardScript> deck_old = new List<CardScript>()
+        Vector3[] directions ={Vector3.up, Vector3.down, Vector3.left, Vector3.right};
+
+        foreach (var direction in directions)
         {
-            new CardScript() { CardColor = ColorDirectionHelp.colors[0], CardDirection = Vector3.up},
-            new CardScript() { CardColor = ColorDirectionHelp.colors[0], CardDirection = Vector3.down},
-            new CardScript() { CardColor = ColorDirectionHelp.colors[0], CardDirection = Vector3.left},
-            new CardScript() { CardColor = ColorDirectionHelp.colors[0], CardDirection = Vector3.right},
-            new CardScript() { CardColor = ColorDirectionHelp.colors[1], CardDirection = Vector3.up},
-            new CardScript() { CardColor = ColorDirectionHelp.colors[1], CardDirection = Vector3.down},
-            new CardScript() { CardColor = ColorDirectionHelp.colors[1], CardDirection = Vector3.left},
-            new CardScript() { CardColor = ColorDirectionHelp.colors[1], CardDirection = Vector3.right},
-            new CardScript() { CardColor = ColorDirectionHelp.colors[2], CardDirection = Vector3.up},
-            new CardScript() { CardColor = ColorDirectionHelp.colors[2], CardDirection = Vector3.down},
-            new CardScript() { CardColor = ColorDirectionHelp.colors[2], CardDirection = Vector3.left},
-            new CardScript() { CardColor = ColorDirectionHelp.colors[2], CardDirection = Vector3.right},
-            new CardScript() { CardColor = ColorDirectionHelp.colors[3], CardDirection = Vector3.up},
-            new CardScript() { CardColor = ColorDirectionHelp.colors[3], CardDirection = Vector3.down},
-            new CardScript() { CardColor = ColorDirectionHelp.colors[3], CardDirection = Vector3.left},
-            new CardScript() { CardColor = ColorDirectionHelp.colors[3], CardDirection = Vector3.right},
-        };
-        foreach (var card in deck_old)
-        {
-            var spawnedTile = Instantiate(_cradPref, new Vector3(this.transform.position.x, this.transform.position.y), Quaternion.identity);
-            spawnedTile.Init(card);
-            deck.Add(spawnedTile);
+            foreach (var color in colors)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    var card = new CardScript() { CardColor = color.color, CardDirection = direction};
+                    var spawnedTile = Instantiate(_cradPref, new Vector3(this.transform.position.x, this.transform.position.y), Quaternion.identity);
+                    spawnedTile.Init(card);
+                    deck.Add(spawnedTile);
+                }
+            }
         }
+        
     }
 
     public void DrawCard()

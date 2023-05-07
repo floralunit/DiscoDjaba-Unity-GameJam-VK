@@ -8,12 +8,17 @@ public class Tile : MonoBehaviour
     [SerializeField] public Color _color;
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject _highlight;
-
+    [SerializeField] public List<GameObject> sprites;
+    
     public void Init()
     {
-        // Создаем экземпляр Tile с указанным цветом
-        _renderer.color = ColorDirectionHelp.SetRandomColor();
-        _color = _renderer.color;
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ Tile пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+        _renderer.color = _color;
+        //_renderer.sprite = sprites[rand];
+        int randomChild = Random.Range(1,sprites.Count + 1);
+        
+        gameObject.transform.GetChild(randomChild).gameObject.SetActive(true);
+        
     }
 
     void OnMouseEnter()
