@@ -157,7 +157,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: bbc5502100d4cbe44badfd64c253156b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0c0a4f2c97d7a3f4aae9d8726190b267, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -279,7 +279,7 @@ Transform:
   m_GameObject: {fileID: 5886711546433869540}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 324971180295527407}
@@ -297,12 +297,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5886711546433869540}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a068bb47107b31645973b4f8f4b27ef6, type: 3}
+  m_Script: {fileID: 11500000, guid: ebc08a584c7e49d43996b35fabf0fb2c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _color: {r: 0.043789804, g: 0.8962264, b: 0.004831398, a: 0}
+  _color: {r: 0, g: 0, b: 0, a: 0}
   _rendererSquare: {fileID: 4535538594900735833}
-  _square: {fileID: 0}
   _rendererArrow: {fileID: 4726021216379533184}
   CardColor: {r: 0, g: 0, b: 0, a: 0}
   CardDirection: {x: 0, y: 0, z: 0}
