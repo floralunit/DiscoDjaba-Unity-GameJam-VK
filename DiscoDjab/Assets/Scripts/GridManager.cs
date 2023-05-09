@@ -1,3 +1,4 @@
+using Assets.Scripts.Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,6 +17,8 @@ public class GridManager : MonoBehaviour
     [SerializeField] public List<Material> colors;
     
     private Dictionary<Vector2, Tile> _tiles;
+
+    public Vector3 WinLocation;
     
     private void Awake()
     {
@@ -26,7 +29,13 @@ public class GridManager : MonoBehaviour
     {   
         
         GenerateGrid();
+        WinLocation = ColorDirectionHelp.SetRandomWinLocation();
+    }
 
+    private void Update()
+    {
+        var tile = GetTileAtPosition(WinLocation);
+        tile._exit.gameObject.SetActive(true);
     }
 
     void GenerateGrid()
@@ -57,4 +66,5 @@ public class GridManager : MonoBehaviour
         if (_tiles.TryGetValue(pos, out var tile)) return tile;
         return null;
     }
+
 }

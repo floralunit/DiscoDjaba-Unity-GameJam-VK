@@ -8,11 +8,11 @@ public class Tile : MonoBehaviour
     [SerializeField] public Color _color;
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject _highlight;
+    [SerializeField] public GameObject _exit;
     [SerializeField] public List<GameObject> sprites;
     
     public void Init()
     {
-        // ������� ��������� Tile � ��������� ������
         _renderer.color = _color;
         //_renderer.sprite = sprites[rand];
         int randomChild = Random.Range(1,sprites.Count + 1);

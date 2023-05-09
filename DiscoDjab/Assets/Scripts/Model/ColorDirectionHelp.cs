@@ -7,8 +7,8 @@ namespace Assets.Scripts.Model
     {
         public static Color[] colors = { Color.red, Color.yellow, Color.green, Color.blue };
         public static Vector3[] directions = { Vector3.up, Vector3.down, Vector3.right, Vector3.left };
-        public static Vector2[] playerLocations = 
-            { new Vector2(0, GridManager.Instance._height - 1), new Vector2(GridManager.Instance._width - 1, GridManager.Instance._height - 1) , new Vector2(0, 0) , new Vector2(GridManager.Instance._width - 1, 0) };
+        public static List<Vector3> playerLocations = new List<Vector3>()
+            { new Vector3(-3, 4), new Vector3(3, 4) , new Vector3(3, -2) , new Vector3(-3, -2) };
 
         public static Color SetRandomColor()
         {
@@ -19,6 +19,12 @@ namespace Assets.Scripts.Model
         {
             Vector3 direction = directions[Random.Range(0, directions.Length)];
             return direction;
+        }
+        public static Vector3 SetRandomWinLocation()
+        {
+            System.Random rnd = new System.Random();
+            int num = rnd.Next(0, ColorDirectionHelp.playerLocations.Count);
+            return ColorDirectionHelp.playerLocations[num];
         }
     }
 }

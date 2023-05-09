@@ -46,6 +46,19 @@ public class GameManagerScript : MonoBehaviour
         
     }
 
+
+    public void Update()
+    {
+        if (avalibaleCardSlots.Any())
+        {
+            DrawCard();
+        }
+
+        if(deck.Count == 0) {
+            GameOver(false, "Закончились карты!");
+        }
+    }
+
     public void DrawCard()
     {
         if (deck.Count >= 1)
@@ -104,12 +117,18 @@ public class GameManagerScript : MonoBehaviour
         card.gameObject.SetActive(false);
     }
 
-
-    public void Update()
+    public void GameOver(bool isWin, string text)
     {
-        if (avalibaleCardSlots.Any())
+        var changeScene = new SceneChanger();
+
+        if (isWin)
         {
-            DrawCard();
+            changeScene.ChangeScene("VictoryScene");
+        }
+        else
+        {
+            changeScene.ChangeScene("LooserScene");
         }
     }
+
 }

@@ -1,4 +1,5 @@
 using Assets.Scripts;
+using Assets.Scripts.Model;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,12 @@ public class FrogMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.D) && !isMoving )
         {
             StartCoroutine(MoveFrog(Vector3.right));
+        }
+
+
+        if (transform.position == GridManager.Instance.WinLocation)
+        {
+            GameManagerScript.Instance.GameOver(true, "");
         }
     }
 
