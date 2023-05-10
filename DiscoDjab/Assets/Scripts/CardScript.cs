@@ -3,6 +3,7 @@ using Assets.Scripts.Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -43,14 +44,21 @@ public class CardScript : MonoBehaviour
         {
             if (FrogMovement.Instance.CheckIfCanUseCard(this))
             {
-                transform.position += Vector3.up;
+                var direction = this.CardDirection;
                 hasBeenPlayed = true;
-                gm.avalibaleCardSlots[handIndex] = true;
+                this.transform.position += Vector3.down;
+                Invoke("SetAvailable", 2f);
                 Invoke("MoveToDiscardPile", 2f);
-                StartCoroutine(FrogMovement.Instance.MoveFrog(this.CardDirection));
+                StartCoroutine(FrogMovement.Instance.MoveFrog(direction));
             }
         }
     }
+
+    void SetAvailable()
+    {
+        gm.avalibaleCardSlots[handIndex] = true;
+    }
+
     void MoveToDiscardPile()
     {
 
@@ -61,13 +69,14 @@ public class CardScript : MonoBehaviour
 
     void OnMouseEnter()
     {
-        transform.localScale += new Vector3(0, 0, 0);
-        transform.position += Vector3.up;
+        //_highlight.SetActive(true);
+        transform.localScale += new Vector3(0.08f, 0.08f, 0.08f);
     }
 
     void OnMouseExit()
     {
-        transform.position -= Vector3.up;
+        //_highlight.SetActive(false);
+        transform.localScale -= new Vector3(0.08f, 0.08f, 0.08f);
     }
 
 }

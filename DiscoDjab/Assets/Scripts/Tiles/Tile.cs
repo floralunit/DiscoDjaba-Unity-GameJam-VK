@@ -11,13 +11,17 @@ public class Tile : MonoBehaviour
     [SerializeField] public GameObject _exit;
     [SerializeField] public List<GameObject> sprites;
     
-    public void Init()
+    public void Init(bool isGenerateGrid)
     {
         _renderer.color = _color;
         //_renderer.sprite = sprites[rand];
-        int randomChild = Random.Range(1,sprites.Count + 1);
-        
-        gameObject.transform.GetChild(randomChild).gameObject.SetActive(true);
+
+        if (isGenerateGrid)
+        {
+            int randomChild = Random.Range(2, sprites.Count + 1);
+
+            gameObject.transform.GetChild(randomChild).gameObject.SetActive(true);
+        }
         
     }
 

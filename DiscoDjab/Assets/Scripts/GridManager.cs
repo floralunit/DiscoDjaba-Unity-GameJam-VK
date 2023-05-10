@@ -2,6 +2,7 @@ using Assets.Scripts.Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -26,17 +27,63 @@ public class GridManager : MonoBehaviour
     }
 
     void Start()
-    {   
-        
+    {
         GenerateGrid();
         WinLocation = ColorDirectionHelp.SetRandomWinLocation();
+        //StartCoroutine(CallWinLocationFuncRandom());
+        StartCoroutine(CallTilesFuncRandom());
+
     }
 
+    IEnumerator CallWinLocationFuncRandom()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(UnityEngine.Random.Range(20f, 40f));// задержка от 1 до 10 секунд
+            var oldLocation = WinLocation;
+            var tile = GetTileAtPosition(oldLocation);
+            tile._exit.gameObject.SetActive(false);
+            yield return new WaitForSeconds(2);
+            WinLocation = ColorDirectionHelp.SetRandomWinLocation();
+        }
+    }
+
+    IEnumerator CallTilesFuncRandom()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(UnityEngine.Random.Range(10f, 30f)); // задержка от 1 до 10 секунд
+            _tiles = new Dictionary<Vector2, Tile>();
+            for (int x = 0; x < _width; x++)
+            {
+                for (int y = 0; y < _height; y++)
+                {
+                    var spawnedTile = Instantiate(_tilePrefab, new Vector3(this.transform.position.x + x, this.transform.position.y + y), Quaternion.identity);
+                    spawnedTile.name = $"Tile {x} {y}";
+                    System.Random rnd = new System.Random();
+                    int num = rnd.Next(0, colors.Count);
+                    spawnedTile._color = colors[num].color;
+
+
+                    spawnedTile.Init(false);
+
+                    _tiles[new Vector2(this.transform.position.x + x, this.transform.position.y + y)] = spawnedTile;
+                }
+            }
+        }
+    }
+
+
     private void Update()
+    {
+        Invoke("NewWinLocation", 0f);
+    }
+    void NewWinLocation()
     {
         var tile = GetTileAtPosition(WinLocation);
         tile._exit.gameObject.SetActive(true);
     }
+
 
     void GenerateGrid()
     {
@@ -52,7 +99,7 @@ public class GridManager : MonoBehaviour
                 spawnedTile._color = colors[num].color;
                     
                 
-                spawnedTile.Init();
+                spawnedTile.Init(true);
 
                 _tiles[new Vector2(this.transform.position.x + x, this.transform.position.y + y)] = spawnedTile;
             }

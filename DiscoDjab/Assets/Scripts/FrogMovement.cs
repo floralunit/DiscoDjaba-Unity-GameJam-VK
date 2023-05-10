@@ -25,22 +25,22 @@ public class FrogMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W) && !isMoving )
-        {
-            StartCoroutine(MoveFrog(Vector3.up));
-        }
-        if (Input.GetKey(KeyCode.A) && !isMoving )
-        {
-            StartCoroutine(MoveFrog(Vector3.left));
-        }
-        if (Input.GetKey(KeyCode.S) && !isMoving )
-        {
-            StartCoroutine(MoveFrog(Vector3.down));
-        }
-        if (Input.GetKey(KeyCode.D) && !isMoving )
-        {
-            StartCoroutine(MoveFrog(Vector3.right));
-        }
+        //if (Input.GetKey(KeyCode.W) && !isMoving)
+        //{
+        //    StartCoroutine(MoveFrog(Vector3.up));
+        //}
+        //if (Input.GetKey(KeyCode.A) && !isMoving)
+        //{
+        //    StartCoroutine(MoveFrog(Vector3.left));
+        //}
+        //if (Input.GetKey(KeyCode.S) && !isMoving)
+        //{
+        //    StartCoroutine(MoveFrog(Vector3.down));
+        //}
+        //if (Input.GetKey(KeyCode.D) && !isMoving)
+        //{
+        //    StartCoroutine(MoveFrog(Vector3.right));
+        //}
 
 
         if (transform.position == GridManager.Instance.WinLocation)
@@ -51,7 +51,6 @@ public class FrogMovement : MonoBehaviour
 
     public IEnumerator MoveFrog(Vector3 direction)
     {
-        Debug.Log("MoveFrog");
         isMoving= true;
 
         float elapseTime = 0;
@@ -67,8 +66,8 @@ public class FrogMovement : MonoBehaviour
 
         transform.position = targetPos;
 
-        var tile = GridManager.Instance.GetTileAtPosition(targetPos);
-        Debug.Log($"Легущка в координате {targetPos.x} {targetPos.y} на цвете {tile._color}");
+        //var tile = GridManager.Instance.GetTileAtPosition(targetPos);
+        //Debug.Log($"Легущка в координате {targetPos.x} {targetPos.y} на цвете {tile._color}");
         isMoving = false;
     }
 

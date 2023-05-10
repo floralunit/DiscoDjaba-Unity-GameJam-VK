@@ -15,8 +15,14 @@ EditorBuildSettings:
     path: Assets/Scenes/ChoosePlayers.unity
     guid: 63a3dd98f4ca6d84e8f050359d069ec4
   - enabled: 1
+    path: Assets/Scenes/InfoScene.unity
+    guid: 4707d4ec190b3a44a9056b5df065b2b2
+  - enabled: 1
     path: Assets/Scenes/Game.unity
-    guid: f270e6a1f55a76c4db7ff2522d8ee03d
+    guid: 605017311c3144544befb0bcc9c833fd
+  - enabled: 1
+    path: Assets/Scenes/RoolsScene.unity
+    guid: 9a6fea3e6e445de479c97ca446a28c5e
   - enabled: 1
     path: Assets/Scenes/VictoryScene.unity
     guid: f2ee8d3bacfa68c4485e33eada7d2c0b

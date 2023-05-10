@@ -34,7 +34,7 @@ public class GameManagerScript : MonoBehaviour
         {
             foreach (var color in colors)
             {
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 3; i++)
                 {
                     var card = new CardScript() { CardColor = color.color, CardDirection = direction};
                     var spawnedTile = Instantiate(_cradPref, new Vector3(this.transform.position.x, this.transform.position.y), Quaternion.identity);
@@ -43,13 +43,13 @@ public class GameManagerScript : MonoBehaviour
                 }
             }
         }
-        
+
     }
 
 
     public void Update()
     {
-        if (avalibaleCardSlots.Any())
+        if (avalibaleCardSlots.Length > 0)
         {
             DrawCard();
         }
