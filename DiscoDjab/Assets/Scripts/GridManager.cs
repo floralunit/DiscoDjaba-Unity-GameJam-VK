@@ -30,7 +30,8 @@ public class GridManager : MonoBehaviour
     {
         GenerateGrid();
         WinLocation = ColorDirectionHelp.SetRandomWinLocation();
-        //StartCoroutine(CallWinLocationFuncRandom());
+
+        StartCoroutine(CallWinLocationFuncRandom());
         StartCoroutine(CallTilesFuncRandom());
 
     }
@@ -39,11 +40,16 @@ public class GridManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(UnityEngine.Random.Range(20f, 40f));// задержка от 1 до 10 секунд
-            var oldLocation = WinLocation;
-            var tile = GetTileAtPosition(oldLocation);
-            tile._exit.gameObject.SetActive(false);
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(UnityEngine.Random.Range(30f, 40f));// задержка от 1 до 10 секунд
+            for (int x = 0; x < _width; x++)
+            {
+                for (int y = 0; y < _height; y++)
+                {
+                    var tile = GetTileAtPosition(new Vector2(this.transform.position.x + x, this.transform.position.y + y));
+                    tile._exit.gameObject.SetActive(false);
+                    tile.Init(false);
+                }
+            }
             WinLocation = ColorDirectionHelp.SetRandomWinLocation();
         }
     }
@@ -52,22 +58,17 @@ public class GridManager : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(UnityEngine.Random.Range(10f, 30f)); // задержка от 1 до 10 секунд
-            _tiles = new Dictionary<Vector2, Tile>();
+            yield return new WaitForSeconds(UnityEngine.Random.Range(20f, 30f)); // задержка от 1 до 10 секунд
             for (int x = 0; x < _width; x++)
             {
                 for (int y = 0; y < _height; y++)
                 {
-                    var spawnedTile = Instantiate(_tilePrefab, new Vector3(this.transform.position.x + x, this.transform.position.y + y), Quaternion.identity);
-                    spawnedTile.name = $"Tile {x} {y}";
                     System.Random rnd = new System.Random();
                     int num = rnd.Next(0, colors.Count);
-                    spawnedTile._color = colors[num].color;
-
-
-                    spawnedTile.Init(false);
-
-                    _tiles[new Vector2(this.transform.position.x + x, this.transform.position.y + y)] = spawnedTile;
+                    var tile = GetTileAtPosition(new Vector2(this.transform.position.x + x, this.transform.position.y + y));
+                    tile._color = colors[num].color;
+                    //tile._exit.gameObject.SetActive(false);
+                    tile.Init(false);
                 }
             }
         }

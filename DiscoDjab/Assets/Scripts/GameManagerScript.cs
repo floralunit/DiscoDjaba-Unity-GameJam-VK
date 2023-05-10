@@ -100,7 +100,6 @@ public class GameManagerScript : MonoBehaviour
         CardScript randCard = handDeck[Random.Range(0, handDeck.Count)];
         if (randCard.hasBeenPlayed == false)
         {
-            ;
             randCard.hasBeenPlayed = true;
             this.avalibaleCardSlots[randCard.handIndex] = true;
             this.discard.Add(randCard);

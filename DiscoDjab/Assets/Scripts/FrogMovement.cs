@@ -73,7 +73,6 @@ public class FrogMovement : MonoBehaviour
 
     public bool CheckIfCanUseCard (CardScript card)
     {
-        //Debug.Log("проверяем");
         var wantLocation = transform.position + card.CardDirection;
         var tile = GridManager.Instance.GetTileAtPosition(wantLocation);
 
